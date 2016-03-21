@@ -1,0 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600);
+
+* {border-radius: 0px !important;}
+body {font-family: 'Open Sans', sans-serif;}
+.wrapper {
+  background-color: #EEEEEE;
+}
