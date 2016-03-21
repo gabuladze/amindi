@@ -8,7 +8,7 @@ var desc = $("#desc");
 
 function updateWeather() {
   if(!navigator.geolocation) {
-    target.html("Geolocation is Disabled!");
+    alert("Geolocation is Disabled!");
     return;
   }
 
@@ -21,21 +21,28 @@ function updateWeather() {
     $.get(apiUrl, function(data) {
       var tempC = Math.round(data.main.temp);
       var tempF = Math.round(data.main.temp * 9/5 +32);
+      var countryName = data.name+", "+data.sys.country;
       var weatherDesc = data.weather[0].main;
 
+      // FOR DEBUGGING ONLY!!!
       console.log(data);
-      country.html(data.name+", "+data.sys.country);
-      temp.html(tempC+"&deg;C");
-      desc.html(weatherDesc);
-    })
-    // target.html(apiUrl);
+      ///
+
+      updatePage(countryName, tempC, weatherDesc);
+    });
   }
 
   function error() {
-    target.html("Error!");
+    alert("Error executing the request!");
   }
 
   navigator.geolocation.getCurrentPosition(success, error);
+}
+
+function updatePage(countryName, tempC, weatherDesc) {
+  country.html(countryName);
+  temp.html(tempC+"&deg;C");
+  desc.html(weatherDesc);
 }
 
 $(document).ready(function() {
