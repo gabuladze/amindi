@@ -1,10 +1,10 @@
 var apiUrl = "http://api.openweathermap.org/data/2.5/weather?APPID=";
 var appID = "c3de3d20f28254f5839c03bff10f0c34";
-var target = $("#target");
-var switchUnit = $("#switchUnit");
 var country = $("#country");
 var temp = $("#temp");
+var unit = $("#unit");
 var desc = $("#desc");
+var forecast = {};
 
 function updateWeather() {
   if(!navigator.geolocation) {
@@ -19,16 +19,16 @@ function updateWeather() {
     apiUrl += appID+"&lat="+latitude+"&lon="+longitude+"&units=metric";
 
     $.get(apiUrl, function(data) {
-      var tempC = Math.round(data.main.temp);
-      var tempF = Math.round(data.main.temp * 9/5 +32);
-      var countryName = data.name+", "+data.sys.country;
-      var weatherDesc = data.weather[0].main;
+      forecast.tempC = Math.round(data.main.temp);
+      forecast.tempF = Math.round(data.main.temp * 9/5 +32);
+      forecast.desc = data.weather[0].main;
+      forecast.place = data.name+", "+data.sys.country;
 
       // FOR DEBUGGING ONLY!!!
       console.log(data);
       ///
 
-      updatePage(countryName, tempC, weatherDesc);
+      updatePage(forecast);
     });
   }
 
@@ -39,12 +39,23 @@ function updateWeather() {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
-function updatePage(countryName, tempC, weatherDesc) {
-  country.html(countryName);
-  temp.html(tempC+"&deg;C");
-  desc.html(weatherDesc);
+function updatePage(forecast) {
+  country.text(forecast.place);
+  temp.html(forecast.tempC);
+  desc.text(forecast.desc);
+}
+
+function toggleUnit() {
+  if (unit.text() === 'C') {
+    temp.html(forecast.tempF);
+    unit.text("F");
+  } else {
+    temp.html(forecast.tempC);
+    unit.text("C");
+  }
 }
 
 $(document).ready(function() {
   updateWeather();
+  unit.on("click", toggleUnit);
 });

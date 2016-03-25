@@ -17,16 +17,11 @@
         <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
           <div class="wrapper">
             <h1 class="text-center" id="country"></h1>
-            <h2 class="text-center" id="temp"></h2>
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="toggleUnit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="toggleUnit">
-                <li><a href="" id="toCels">Celsius</a></li>
-                <li><a href="" id="toFah">Fahrenheit</a></li>
-              </ul>
-            </div>
+            <h2 class="text-center">
+              <span id="temp"></span>
+              &deg;<span id='unit'>C</span>
+            </h2>
+            <!-- <button type="button" id="switchUnit" class="btn btn-default btn-xs">switch unit</button> -->
             <h2 class="text-center" id="desc"></h2>
           </div>
         </div>

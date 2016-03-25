@@ -5,3 +5,7 @@ body {font-family: 'Open Sans', sans-serif;}
 .wrapper {
   background-color: #EEEEEE;
 }
+#unit {
+  cursor: pointer;
+  color: #19B5FE;
+}
