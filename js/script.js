@@ -4,9 +4,10 @@ var country = $("#country");
 var temp = $("#temp");
 var unit = $("#unit");
 var desc = $("#desc");
+var weatherIcon = $("#weatherIcon");
 var forecast = {};
 
-function updateWeather() {
+function getWeather() {
   if(!navigator.geolocation) {
     alert("Geolocation is Disabled!");
     return;
@@ -23,10 +24,7 @@ function updateWeather() {
       forecast.tempF = Math.round(data.main.temp * 9/5 +32);
       forecast.desc = data.weather[0].main;
       forecast.place = data.name+", "+data.sys.country;
-
-      // FOR DEBUGGING ONLY!!!
-      console.log(data);
-      ///
+      forecast.number = data.weather[0].id;
 
       updatePage(forecast);
     });
@@ -37,12 +35,23 @@ function updateWeather() {
   }
 
   navigator.geolocation.getCurrentPosition(success, error);
+
 }
 
 function updatePage(forecast) {
   country.text(forecast.place);
   temp.html(forecast.tempC);
   desc.text(forecast.desc);
+  chooseWeatherIcon(forecast);
+}
+
+function chooseWeatherIcon(forecast) {
+  weatherIcon.removeClass();
+  if(20<=(new Date).getHours()<=4) {
+    weatherIcon.addClass("wi wi-owm-night-"+forecast.number);
+  } else {
+    weatherIcon.addClass("wi wi-owm-day-"+forecast.number);
+  }
 }
 
 function toggleUnit() {
@@ -56,6 +65,6 @@ function toggleUnit() {
 }
 
 $(document).ready(function() {
-  updateWeather();
+  getWeather();
   unit.on("click", toggleUnit);
 });

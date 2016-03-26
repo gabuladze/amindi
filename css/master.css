@@ -1,11 +1,23 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600);
 
 * {border-radius: 0px !important;}
-body {font-family: 'Open Sans', sans-serif;}
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgb(0, 0, 0);
+  color: #EEEEEE;
+}
 .wrapper {
-  background-color: #EEEEEE;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: .5px solid #333333;
+  border-bottom: .5px solid #333333;
+  color: #EEEEEE;
 }
 #unit {
   cursor: pointer;
   color: #19B5FE;
 }
+#weatherIcon {font-size: 70px;}
+footer {color: #EEEEEE; font-size: 12px; font-weight: 300;}
