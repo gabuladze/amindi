@@ -47,7 +47,7 @@ function updatePage(forecast) {
 
 function chooseWeatherIcon(forecast) {
   weatherIcon.removeClass();
-  if((new Date).getHours() <= 4 && (new Date).getHours() >= 20) {
+  if((new Date).getHours() <= 4 || (new Date).getHours() >= 20) {
     weatherIcon.addClass("wi wi-owm-night-"+forecast.number);
   } else {
     weatherIcon.addClass("wi wi-owm-day-"+forecast.number);
