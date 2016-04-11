@@ -1,5 +1,8 @@
 var apiUrl = "http://api.openweathermap.org/data/2.5/weather?APPID=";
 var appID = "c3de3d20f28254f5839c03bff10f0c34";
+var wrapper = $("#wrapper");
+var errorAlert = $("#errorAlert");
+var errorH1 = $("#error");
 var country = $("#country");
 var temp = $("#temp");
 var unit = $("#unit");
@@ -9,7 +12,9 @@ var forecast = {};
 
 function getWeather() {
   if(!navigator.geolocation) {
-    alert("Geolocation is Disabled!");
+    errorAlert.show();
+    errorH1.html("In order to user the application, please, enable Geolocation.");
+    wrapper.hide();
     return;
   }
 
@@ -31,7 +36,9 @@ function getWeather() {
   }
 
   function error() {
-    alert("Error executing the request!");
+    errorAlert.show();
+    errorH1.html("Please, check your Geolocation settings!");
+    wrapper.hide();
   }
 
   navigator.geolocation.getCurrentPosition(success, error);
@@ -66,5 +73,6 @@ function toggleUnit() {
 
 $(document).ready(function() {
   getWeather();
+  errorAlert.hide();
   unit.on("click", toggleUnit);
 });
