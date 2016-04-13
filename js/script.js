@@ -1,5 +1,5 @@
 var apiUrl = "http://api.openweathermap.org/data/2.5/weather?APPID=";
-var appID = "c3de3d20f28254f5839c03bff10f0c34";
+var appID = "";
 var wrapper = $("#wrapper");
 var errorAlert = $("#errorAlert");
 var errorH1 = $("#error");
